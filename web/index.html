@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>ImageDiet</title>
+  <link rel="icon" type="image/png" href="/art/icon.png">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="top">
+    <img class="cover" src="/art/cover.png" alt="ImageDiet cover: a press shrinking a landscape into a lighter WebP">
+    <div class="top-bar">
+      <img class="logo" src="/art/icon.png" alt="ImageDiet icon">
+      <div>
+        <h1>ImageDiet</h1>
+        <p class="lede">Oversized images become WebP. The original file stays, and browsers that cannot read WebP still get it.</p>
+      </div>
+    </div>
+  </header>
+
+  <p class="safety" id="safety">
+    Dry-run is the default. ImageDiet does not push a branch or open a pull request unless you type the domain to confirm.
+    Original images are never deleted.
+  </p>
+
+  <main>
+    <aside>
+      <div class="aside-head">
+        <h2>Sites</h2>
+        <input id="filter" type="search" placeholder="Filter domains" aria-label="Filter domains">
+      </div>
+      <p id="hub" class="hub"></p>
+      <ul id="sites"></ul>
+    </aside>
+
+    <section class="work">
+      <div class="site-head">
+        <div>
+          <p class="kicker" id="source">No site selected</p>
+          <h2 id="domain">Pick a site</h2>
+          <p id="note" class="note"></p>
+        </div>
+        <div class="actions">
+          <button type="button" id="scan" disabled>Scan (dry-run)</button>
+          <button type="button" id="prepare" disabled>Prepare branch</button>
+          <button type="button" id="open-confirm" disabled>Confirm &amp; open PR</button>
+        </div>
+      </div>
+
+      <p id="status" class="status" role="status"></p>
+      <p id="error" class="error" role="alert"></p>
+
+      <div class="totals" id="totals" hidden>
+        <div><span>Before</span><strong id="before">—</strong></div>
+        <div><span>After</span><strong id="after">—</strong></div>
+        <div><span>Savings</span><strong id="savings">—</strong></div>
+        <div><span>Mode</span><strong id="mode">dry-run</strong></div>
+      </div>
+      <p id="report-link"></p>
+      <pre id="diff" class="diff" hidden></pre>
+
+      <div class="table-wrap">
+        <table id="findings">
+          <thead>
+            <tr>
+              <th>Image</th>
+              <th>Before</th>
+              <th>After</th>
+              <th>Intrinsic</th>
+              <th>Rendered</th>
+              <th>Action</th>
+              <th>Why</th>
+            </tr>
+          </thead>
+          <tbody id="findings-body">
+            <tr><td colspan="7" class="empty">Scan a site to see findings. A scan only writes a report.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <form id="settings" class="settings">
+        <h2>Settings</h2>
+        <label>Max file size (KB)
+          <input id="max-kb" name="max_kb" type="number" min="1" step="1" value="200">
+        </label>
+        <label>Overscale ratio
+          <input id="ratio" name="ratio" type="number" min="0.1" step="0.1" value="1.5">
+        </label>
+        <label>WebP quality
+          <input id="quality" name="quality" type="number" min="1" max="100" step="1" value="80">
+        </label>
+        <label class="check">
+          <input id="playwright" name="playwright" type="checkbox">
+          Use Playwright when it is installed (optional)
+        </label>
+        <p class="hint">Viewports stay at 1440px and 390px. The next scan uses these thresholds. They do not publish anything.</p>
+        <button type="submit">Save settings</button>
+      </form>
+    </section>
+  </main>
+
+  <div id="modal" class="modal" hidden>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <h2 id="modal-title">Type the domain to confirm</h2>
+      <p id="modal-copy"></p>
+      <label>Domain
+        <input id="confirm-domain" autocomplete="off" spellcheck="false">
+      </label>
+      <div class="modal-actions">
+        <button type="button" id="confirm-cancel">Cancel</button>
+        <button type="button" id="confirm-submit" disabled>Push branch and open PR</button>
+      </div>
+      <p id="modal-error" class="error"></p>
+    </div>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+sites:
+  - domain: paused.example.test
+    url: http://127.0.0.1:9/
+    github_repo: local/paused
+    branch_base: develop
+    image_root: public
+    note: local wins
+  - domain: big.example.test
+    github_repo: null
+    note: cleared repo
+  - domain: extra.example.test
+    url: http://127.0.0.1:9/extra
+    note: local only

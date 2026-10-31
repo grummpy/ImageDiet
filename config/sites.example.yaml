@@ -1,0 +1,13 @@
+# Copy to config/sites.yaml to override grummpy/my_domains configs/inventory.yaml.
+# Override wins per domain. A site with no github_repo is report-only:
+# ImageDiet will scan it and will not prepare a branch or open a pull request.
+#
+# Nothing here is a live site. The app also always offers the bundled synthetic
+# sample (sample.imagediet.test) when that domain is not already listed.
+sites:
+  - domain: sample.imagediet.test
+    url: internal://sample
+    branch_base: main
+    image_root: .
+    status: sample
+    note: Synthetic site shipped with ImageDiet. Report only.

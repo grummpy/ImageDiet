@@ -1,0 +1,11 @@
+.venv/
+.playwright-mcp/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+work/
+reports/
+config/settings.json
+config/sites.yaml
+.DS_Store

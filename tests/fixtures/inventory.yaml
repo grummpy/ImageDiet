@@ -1,0 +1,13 @@
+# Fixture only. These domains are not fetched by the tests.
+sites:
+  - domain: big.example.test
+    github_repo: grummpy/big-example
+    status: live
+    note: Has a repo
+  - domain: static.example.test
+    status: parked
+    note: No repo, report only
+  - domain: paused.example.test
+    github_repo: grummpy/paused
+    status: paused
+    note: Override me
